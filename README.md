@@ -6,6 +6,8 @@
 
 This framework enables Claude Code to systematically build high-quality applications from initial concept to deployment. It provides templates, workflows, and automation for web apps, APIs, CLI tools, ML systems, trading dashboards, and more.
 
+This is still very early and I am making frequent changes, improving the flow and ease of use. I hope to iterate rapidly for a while so check back every so often to see if there are significant improvements. 
+
 ## 🎯 **What This Framework Does**
 
 ### **For Claude Code**
