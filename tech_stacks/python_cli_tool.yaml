@@ -1,0 +1,56 @@
+name: "Python CLI Tool"
+description: "Command-line application with Python and Click framework"
+application_types: ["cli_tool"]
+complexity: "low"
+
+tech_stack:
+  language: "Python"
+  cli_framework: "Click"
+  packaging: "setuptools"
+  distribution: "PyPI"
+  
+dependencies:
+  - "click"
+  - "colorama"
+  - "rich"
+  - "pydantic"
+  - "requests"
+
+development_setup:
+  - "Install Python 3.8+"
+  - "Create virtual environment: python -m venv venv"
+  - "Activate venv: source venv/bin/activate (Unix) or venv\\Scripts\\activate (Windows)"
+  - "Install dependencies: pip install -r requirements.txt"
+  - "Install in development mode: pip install -e ."
+
+project_structure:
+  - "src/{project_name}/"
+  - "  __init__.py"
+  - "  cli.py"
+  - "  commands/"
+  - "  utils/"
+  - "tests/"
+  - "setup.py"
+  - "README.md"
+  - "requirements.txt"
+
+testing_strategy:
+  - "pytest for unit tests"
+  - "click.testing.CliRunner for CLI testing"
+  - "pytest-cov for coverage reporting"
+  - "tox for testing across Python versions"
+
+best_practices:
+  - "Use Click for command-line interface"
+  - "Implement comprehensive help text"
+  - "Follow semantic versioning"
+  - "Use configuration files for defaults"
+  - "Provide clear error messages"
+  - "Support common output formats (JSON, CSV)"
+  - "Use rich for beautiful terminal output"
+  - "Implement progress bars for long operations"
+
+distribution:
+  build_command: "python setup.py sdist bdist_wheel"
+  upload_command: "twine upload dist/*"
+  install_command: "pip install {project_name}"

@@ -1,0 +1,71 @@
+name: "React + Python Full Stack"
+description: "Modern web application with React frontend and Python backend"
+application_types: ["web_app", "trading_dashboard"]
+complexity: "medium"
+
+tech_stack:
+  frontend:
+    framework: "React"
+    language: "JavaScript/TypeScript"
+    ui_library: "Material-UI or Tailwind CSS"
+    state_management: "Redux Toolkit or Zustand"
+    build_tool: "Vite"
+    
+  backend:
+    framework: "FastAPI"
+    language: "Python"
+    orm: "SQLAlchemy"
+    validation: "Pydantic"
+    
+  database:
+    primary: "PostgreSQL"
+    cache: "Redis"
+    
+  deployment:
+    frontend: "Vercel or Netlify"
+    backend: "Docker + AWS/Heroku"
+    database: "AWS RDS or Heroku Postgres"
+
+dependencies:
+  frontend:
+    - "react"
+    - "react-dom" 
+    - "react-router-dom"
+    - "@reduxjs/toolkit"
+    - "axios"
+    - "material-ui"
+  
+  backend:
+    - "fastapi"
+    - "uvicorn"
+    - "sqlalchemy"
+    - "psycopg2-binary"
+    - "redis"
+    - "python-jose"
+
+development_setup:
+  - "Install Node.js 18+ and Python 3.9+"
+  - "Create frontend: npx create-react-app frontend --template typescript"
+  - "Create backend: mkdir backend && cd backend"
+  - "Setup virtual environment: python -m venv venv"
+  - "Install backend deps: pip install -r requirements.txt"
+  - "Setup PostgreSQL database"
+  - "Configure environment variables"
+
+testing_strategy:
+  frontend:
+    - "Jest for unit tests"
+    - "React Testing Library for component tests" 
+    - "Cypress for E2E tests"
+  backend:
+    - "pytest for unit and integration tests"
+    - "TestClient for API testing"
+    - "pytest-asyncio for async tests"
+
+best_practices:
+  - "Use TypeScript for type safety"
+  - "Implement proper error boundaries"
+  - "Follow REST API conventions"
+  - "Use environment variables for configuration"
+  - "Implement proper logging"
+  - "Use database migrations"

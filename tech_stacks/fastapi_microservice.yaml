@@ -1,0 +1,73 @@
+name: "FastAPI Microservice"
+description: "High-performance REST API service with automatic documentation"
+application_types: ["api_service"]
+complexity: "medium"
+
+tech_stack:
+  framework: "FastAPI"
+  language: "Python"
+  asgi_server: "uvicorn"
+  database: "PostgreSQL"
+  orm: "SQLAlchemy"
+  validation: "Pydantic"
+  authentication: "JWT"
+  
+dependencies:
+  - "fastapi"
+  - "uvicorn[standard]"
+  - "sqlalchemy"
+  - "alembic"
+  - "psycopg2-binary"
+  - "python-jose[cryptography]"
+  - "passlib[bcrypt]"
+  - "python-multipart"
+  - "redis"
+
+development_setup:
+  - "Install Python 3.9+"
+  - "Create virtual environment: python -m venv venv"
+  - "Install dependencies: pip install -r requirements.txt"
+  - "Setup PostgreSQL database"
+  - "Run migrations: alembic upgrade head"
+  - "Start development server: uvicorn main:app --reload"
+
+project_structure:
+  - "app/"
+  - "  __init__.py"
+  - "  main.py"
+  - "  api/"
+  - "    __init__.py"
+  - "    endpoints/"
+  - "  core/"
+  - "    config.py"
+  - "    security.py"
+  - "  models/"
+  - "  schemas/"
+  - "  crud/"
+  - "alembic/"
+  - "tests/"
+  - "requirements.txt"
+
+testing_strategy:
+  - "pytest for unit and integration tests"
+  - "httpx for async HTTP testing"
+  - "TestClient for API endpoint testing"
+  - "pytest-asyncio for async test support"
+  - "Factory Boy for test data generation"
+
+best_practices:
+  - "Use Pydantic models for request/response validation"
+  - "Implement dependency injection for database sessions"
+  - "Use Alembic for database migrations"
+  - "Implement proper error handling with custom exceptions"
+  - "Use environment variables for configuration"
+  - "Implement rate limiting and authentication"
+  - "Generate OpenAPI documentation automatically"
+  - "Use background tasks for non-blocking operations"
+
+deployment:
+  containerization: "Docker"
+  orchestration: "Kubernetes or Docker Compose"
+  reverse_proxy: "nginx"
+  monitoring: "Prometheus + Grafana"
+  logging: "structured logging with JSON format"
