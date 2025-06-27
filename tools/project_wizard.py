@@ -48,10 +48,14 @@ class ProjectWizard:
     def _get_project_name(self) -> str:
         """Get project name from user."""
         while True:
-            name = input("\n📝 Enter project name: ").strip()
-            if name and name.replace("_", "").replace("-", "").isalnum():
-                return name
-            print("❌ Please enter a valid project name (letters, numbers, hyphens, underscores)")
+            try:
+                name = input("\n📝 Enter project name: ").strip()
+                if name and name.replace("_", "").replace("-", "").isalnum():
+                    return name
+                print("❌ Please enter a valid project name (letters, numbers, hyphens, underscores)")
+            except EOFError:
+                print("\n❌ Error: No input available. Please run this wizard in an interactive terminal.")
+                sys.exit(1)
     
     def _select_application_type(self) -> str:
         """Let user select application type."""
@@ -68,10 +72,14 @@ class ProjectWizard:
             print(f"  {key}. {description}")
         
         while True:
-            choice = input("\nEnter choice (1-5): ").strip()
-            if choice in app_types:
-                return app_types[choice][0]
-            print("❌ Please enter a number between 1-5")
+            try:
+                choice = input("\nEnter choice (1-5): ").strip()
+                if choice in app_types:
+                    return app_types[choice][0]
+                print("❌ Please enter a number between 1-5")
+            except EOFError:
+                print("\n❌ Error: No input available. Please run this wizard in an interactive terminal.")
+                sys.exit(1)
     
     def _select_tech_stack(self, app_type: str) -> Optional[Dict]:
         """Let user select technology stack."""
@@ -94,6 +102,9 @@ class ProjectWizard:
                 print(f"❌ Please enter a number between 1-{len(available_stacks)}")
             except ValueError:
                 print("❌ Please enter a valid number")
+            except EOFError:
+                print("\n❌ Error: No input available. Please run this wizard in an interactive terminal.")
+                sys.exit(1)
     
     def _get_available_tech_stacks(self, app_type: str) -> Dict[str, Dict]:
         """Get available tech stacks for the application type."""
@@ -116,18 +127,26 @@ class ProjectWizard:
         """Get project path from user."""
         default_path = Path.cwd() / project_name
         
-        path_input = input(f"\n📁 Project location [{default_path}]: ").strip()
-        if not path_input:
-            return default_path
-        
-        return Path(path_input).expanduser().resolve()
+        try:
+            path_input = input(f"\n📁 Project location [{default_path}]: ").strip()
+            if not path_input:
+                return default_path
+            
+            return Path(path_input).expanduser().resolve()
+        except EOFError:
+            print("\n❌ Error: No input available. Please run this wizard in an interactive terminal.")
+            sys.exit(1)
     
     def _create_project_structure(self, project_path: Path) -> None:
         """Create the basic project directory structure."""
         if project_path.exists():
-            response = input(f"\n⚠️  Directory {project_path} already exists. Continue? (y/N): ")
-            if response.lower() != 'y':
-                print("❌ Project creation cancelled")
+            try:
+                response = input(f"\n⚠️  Directory {project_path} already exists. Continue? (y/N): ")
+                if response.lower() != 'y':
+                    print("❌ Project creation cancelled")
+                    sys.exit(1)
+            except EOFError:
+                print("\n❌ Error: No input available. Please run this wizard in an interactive terminal.")
                 sys.exit(1)
         
         # Create deliverables structure
